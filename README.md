@@ -23,9 +23,12 @@ https://github.com/xiaoli123/forwordpanel/wiki
 ## 搭建
 ### 安装docker
 centos:
-
+```
 curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
+```
+```
 yum install -y yum-utils
+```
 yum-config-manager \
     --add-repo \
     https://download.docker.com/linux/centos/docker-ce.repo
