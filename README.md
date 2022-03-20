@@ -1,4 +1,4 @@
-# 闲(的)蛋(疼)中转面板
+# 闲蛋中转面板
 一个轻量的中转面板, 一台面板管理多台中转机器, 实现出租, 限流, 转发等功能
 
 介绍见wiki: https://github.com/xiaoli123/forwordpanel/wiki
@@ -18,6 +18,45 @@
 https://github.com/xiaoli123/forwordpanel/wiki
 
 ## 使用方式
-见wiki: https://github.com/xiaoli123/forwordpanel/wiki
 
+备份Docker地址：https://hub.docker.com/r/kyle838/forwordpanel/tags
+## 搭建
+### 安装docker
+centos:
 
+curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
+yum install -y yum-utils
+yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo
+yum install docker-ce docker-ce-cli containerd.io -y
+systemctl start docker
+systemctl enable docker
+
+ubuntu:
+
+sudo apt-get update
+sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common -y
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+sudo apt-get install docker-ce docker-ce-cli containerd.io -y
+systemctl start docker
+systemctl enable docker
+
+### 获取镜像
+docker pull kyle838/forwordpanel:1.0.7-SNAPSHOT
+### 运行容器
+docker run --restart=always -d -p 10203:8080 kyle838/forwordpanel:1.0.7-SNAPSHOT
+### 访问面板
+http://你的ip:10203
+（通过nginx反向代理即可进行域名绑定，这里就不过多阐述了，不会的自行查找资料）
+默认账号密码
+admin---XIAOLIzz123
